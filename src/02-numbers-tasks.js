@@ -51,8 +51,8 @@ function getCircleCircumference(radius) {
  *  10, 0  => 5
  *  -3, 3  => 0
  */
-function getAverage(/* value1, value2 */) {
-  throw new Error('Not implemented');
+function getAverage(value1, value2) {
+  return (value1 / 2) + (value2 / 2);
 }
 
 /**
@@ -125,8 +125,9 @@ function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
  *     5     => 5
  *     0     => 0
  */
-function getLastDigit(/* value */) {
-  throw new Error('Not implemented');
+function getLastDigit(value) {
+  const str = String(value);
+  return Number(str[str.length - 1]);
 }
 
 
@@ -141,8 +142,8 @@ function getLastDigit(/* value */) {
  *     '37'     => 37
  * '-525.5'     => -525.5
  */
-function parseNumberFromString(/* value */) {
-  throw new Error('Not implemented');
+function parseNumberFromString(value) {
+  return parseFloat(value, 10);
 }
 
 /**
@@ -180,8 +181,27 @@ function getParallelepipedDiagonal(/* a, b, c */) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+  const curPow = 10;
+  const curPow1 = 100;
+  const curPow2 = 1000;
+  let res = 0;
+  if (pow === 0) {
+    res = Math.round(num);
+  }
+  if (pow === 1) {
+    const curNum = num / curPow;
+    res = Math.round(curNum) * curPow;
+  }
+  if (pow === 2) {
+    const curNum = num / curPow1;
+    res = Math.round(curNum) * curPow1;
+  }
+  if (pow === 3) {
+    const curNum = num / curPow2;
+    res = Math.round(curNum) * curPow2;
+  }
+  return res;
 }
 
 /**
@@ -201,8 +221,17 @@ function roundToPowerOfTen(/* num, pow */) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(n) {
+  let res = true;
+  let i = 2;
+  while (i < n) {
+    if (n % i === 0) {
+      res = false;
+      break;
+    }
+    i += 1;
+  }
+  return res;
 }
 
 /**
@@ -220,8 +249,15 @@ function isPrime(/* n */) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  let result;
+  const res = parseInt(value, 10);
+  if (Number.isNaN(res)) {
+    result = def;
+  } else {
+    result = res;
+  }
+  return result;
 }
 
 module.exports = {

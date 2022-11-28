@@ -330,10 +330,9 @@ function get3TopItems(arr) {
  *   [ null, 1, 'elephant' ] => 1
  *   [ 1, '2' ] => 1
  */
-function getPositivesCount(/* arr */) {
-  /* const res = arr.filter((el) => typeof el === 'number' && el > 0, 0);
-  return res.length; */
-  throw new Error('Not implemented');
+function getPositivesCount(arr) {
+  const res = arr.filter((el) => typeof el === 'number' && el > 0);
+  return res.length;
 }
 
 /**
@@ -383,8 +382,18 @@ function getItemsSum(arr) {
  *  [ -1, 'false', null, 0 ] => 2
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getFalsyValuesCount(arr) {
+  const res = arr.filter((el) => {
+    let check = false;
+    if (el === '') check = true;
+    if (el === 0) check = true;
+    if (el === null) check = true;
+    if (el === false) check = true;
+    if (el === undefined) check = true;
+    if (Number.isNaN(el)) check = true;
+    return check;
+  });
+  return res.length;
 }
 
 /**
@@ -581,8 +590,10 @@ function group(/* array, keySelector, valueSelector */) {
  *   [[1, 2], [3, 4], [5, 6]], (x) => x     =>   [ 1, 2, 3, 4, 5, 6 ]
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+function selectMany(arr, childrenSelector) {
+  const res = arr.map((el) => childrenSelector(el));
+  const res2 = [].concat(...res);
+  return res2;
 }
 
 
@@ -598,8 +609,12 @@ function selectMany(/* arr, childrenSelector */) {
  *   ['one','two','three'], [2]       => 'three'  (arr[2])
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
-function getElementByIndexes(/* arr, indexes */) {
-  throw new Error('Not implemented');
+function getElementByIndexes(arr, indexes) {
+  let res;
+  if (indexes.length === 1) res = arr[indexes[0]];
+  if (indexes.length === 2) res = arr[indexes[0]][indexes[1]];
+  if (indexes.length === 3) res = arr[indexes[0]][indexes[1]][indexes[2]];
+  return res;
 }
 
 

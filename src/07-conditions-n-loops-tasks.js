@@ -27,8 +27,12 @@
  *  21 => 'Fizz'
  *
  */
-function getFizzBuzz(/* num */) {
-  throw new Error('Not implemented');
+function getFizzBuzz(num) {
+  let res;
+  if (num % 3 === 0 && num % 5 === 0) { res = 'FizzBuzz'; } else
+  if (num % 5 === 0) { res = 'Buzz'; } else
+  if (num % 3 === 0) { res = 'Fizz'; } else { res = num; }
+  return res;
 }
 
 
@@ -43,8 +47,14 @@ function getFizzBuzz(/* num */) {
  *   5  => 120
  *   10 => 3628800
  */
-function getFactorial(/* n */) {
-  throw new Error('Not implemented');
+function getFactorial(n) {
+  let res;
+  if (n === 0) {
+    res = 1;
+  } else {
+    return n * getFactorial(n - 1);
+  }
+  return res;
 }
 
 
@@ -60,8 +70,14 @@ function getFactorial(/* n */) {
  *   5,10  =>  45 ( = 5+6+7+8+9+10 )
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
-function getSumBetweenNumbers(/* n1, n2 */) {
-  throw new Error('Not implemented');
+function getSumBetweenNumbers(n1, n2) {
+  let res;
+  if (n2 === n1) {
+    res = n1;
+  } else {
+    return n2 + getSumBetweenNumbers(n1, n2 - 1);
+  }
+  return res;
 }
 
 
@@ -80,8 +96,13 @@ function getSumBetweenNumbers(/* n1, n2 */) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  let res;
+  const arr = [a, b, c].sort((e1, e2) => e1 - e2);
+  if (arr[0] + arr[1] > arr[2]) {
+    res = true;
+  } else res = false;
+  return res;
 }
 
 
@@ -117,8 +138,23 @@ function isTriangle(/* a, b, c */) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+function doRectanglesOverlap(rect1, rect2) {
+  function getCicle(a, b) {
+    const arr = [];
+    for (let i = a; i < b; i += 1) {
+      arr.push(i);
+    }
+    return arr;
+  }
+  const segmAWidth = getCicle(rect1.left, rect1.left + rect1.width);
+  const segmBWidth = getCicle(rect2.left, rect2.left + rect2.width);
+  const segmAHeight = getCicle(rect1.top, rect1.top + rect1.height);
+  const segmBHeight = getCicle(rect2.top, rect2.top + rect2.height);
+  let res = false;
+  const bool = segmAWidth.find((el) => segmBWidth.includes(el));
+  const bool2 = segmAHeight.find((el) => segmBHeight.includes(el));
+  if (bool && bool2) res = true;
+  return res;
 }
 
 

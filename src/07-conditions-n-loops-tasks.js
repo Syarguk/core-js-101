@@ -200,8 +200,19 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  let res = null;
+  const arr = str.split('');
+  arr.find((el) => {
+    let check = false;
+    const chars = arr.filter((el2) => el2 === el);
+    if (chars.length === 1) {
+      res = el;
+      check = true;
+    }
+    return check;
+  });
+  return res;
 }
 
 
@@ -227,8 +238,11 @@ function findFirstSingleChar(/* str */) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  const brOpen = isStartIncluded ? '[' : '(';
+  const brClos = isEndIncluded ? ']' : ')';
+  const nmbs = [a, b].sort((c, d) => c - d);
+  return `${brOpen}${nmbs[0]}, ${nmbs[1]}${brClos}`;
 }
 
 
@@ -244,8 +258,9 @@ function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  const res = str.split('').reverse();
+  return res.join('');
 }
 
 
@@ -261,8 +276,10 @@ function reverseString(/* str */) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  const arr = String(num).split('').reverse();
+  const str = arr.join('');
+  return Number(str);
 }
 
 
@@ -304,8 +321,16 @@ function isCreditCardNumber(/* ccn */) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  let res;
+  if (num < 10) {
+    res = num;
+  } else {
+    const arr = String(num).split('');
+    const sum = arr.reduce((ac, el) => Number(ac) + Number(el));
+    return getDigitalRoot(sum);
+  }
+  return res;
 }
 
 
